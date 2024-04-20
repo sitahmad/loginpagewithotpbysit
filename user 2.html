@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>user 1</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body background="OIP (2).PNG">
+<!-- Body section with full-screen loader, form, and content -->
+  <div class="loader-container" id="loader-container">
+    <div class="loader"></div>
+  </div>
+
+  <div class="content">
+    <form action="#" method="POST" name="google-sheet">
+      <div class="title">DATA FORM</div>
+      <div class="form">
+<div class="input_field">
+          <label for="cust name">cust name</label>
+          <input type="text" class="input" name="cust name" placeholder="Enter cust name..." required="required">
+        </div>
+
+        <div class="input_field">
+          <label for="mobile number">mobile number</label>
+          <input type="text" class="input" name="mobile number" placeholder="Enter mobile number..." required="required">
+        </div>
+
+        <div class="input_field">
+          <label for="date">date</label>
+          <input type="date" class="input" name="date" placeholder="Enter date..." required="required">
+        </div>
+
+     
+
+        <div class="input_field">
+          <label for="amount">amount</label>
+          <input type="text" class="input" name="amount" placeholder="Create amount..." required="required">
+        </div>
+
+
+        <div class="input_field">
+          <label for="giv amount">giv amount</label>
+          <input type="number" class="input" name="giv amount" placeholder="Enter giv amount..." required="required">
+        </div>
+
+        <div class="input_field">
+          <input type="submit" class="BTN" name="submit">
+        </div>
+        </div>
+
+       
+      </div>
+    </form>
+  </div>
+  <script>
+  // JavaScript script section for form submission
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwGUxR8kCmUliudHO6gov0rVkbVv1eIsEX4J6mIdGZuUnxTBHcwrgTh-TC-Fw_kDoA/exec';
+  const form = document.forms['google-sheet'];
+  const loaderContainer = document.getElementById('loader-container');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    // Show full-screen loader
+    loaderContainer.style.display = 'flex';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then(response => {
+        // Hide full-screen loader
+        loaderContainer.style.display = 'none';
+
+        // Show alert
+        alert("Thanks for Contacting us..! We Will Contact You Soon...");
+
+        // Clear form fields
+        form.reset();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+
+        // Hide full-screen loader in case of an error
+        loaderContainer.style.display = 'none';
+      });
+  });
+</script>
+
+</body>
+</html>
+
+
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRYlmazSYqZvV7n1L2u8FmsrvyIfGjQgeOwzgBgiWAhPI8HzWo07jZO0fjo9hVeeVZ1etZwJg-kNNsL/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>

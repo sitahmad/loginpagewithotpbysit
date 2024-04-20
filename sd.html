@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #d071f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #333333;
+            text-transform: uppercase;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #ffd700;
+        }
+
+        #captcha {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: color: purple;;
+        }
+
+        #captchaInput {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            background-color: #d071f9;
+            color: #ffffff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, cursor 0.3s;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #b359e1;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 15px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        table {
+            background-color: #ffffff;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 80%;
+            }
+        }
+    </style>
+    <title>Login Page with Captcha</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Login Page with Captcha</h2>
+        <form id="loginForm" name="loginForm" onsubmit="validateForm(); return false;">
+            <br>
+            T id: <input type="text" id="tidInput" name="tid" placeholder="Enter T id" required>
+            T password: <input type="password" id="tpasswordInput" name="tpassword" placeholder="Enter T password" required>
+            <div id="captcha"></div>
+            Captcha: <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
+            
+            <!-- New input fields for T id and T password -->
+            
+
+            <button type="submit">Submit</button><br>
+            <a href="user Iogin">I did'nt have an account</a>
+        </form>
+        <p id="result"></p>
+        <table>
+            <!-- Your table content here -->
+        </table>
+    </div>
+    <script>
+        function generateCaptcha() {
+            const captchaContainer = document.getElementById('captcha');
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captchaText = '';
+
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                captchaText += characters.charAt(randomIndex);
+            }
+
+            captchaContainer.textContent = captchaText;
+        }
+
+        function validateForm() {
+            const tid = document.getElementById('tidInput').value;
+            const tpassword = document.getElementById('tpasswordInput').value;
+            const enteredCaptcha = document.getElementById('captchaInput').value;
+            const generatedCaptcha = document.getElementById('captcha').textContent;
+            const resultMessage = document.getElementById('result');
+
+            if (enteredCaptcha === generatedCaptcha) {
+                switch (tid) {
+                    case '1':
+                        if (tpassword === '1') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 1.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;
+                    case '2':
+                        if (tpassword === '2') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 2.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;
+                    case '3':
+                        if (tpassword === '3') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 3.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;
+                    case '4':
+                        if (tpassword === '4') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 4.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;
+                        case '5':
+                        if (tpassword === '5') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 5.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;case '10':
+                        if (tpassword === '10') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 6.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;case '6':
+                        if (tpassword === '6') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 7.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;case '7':
+                        if (tpassword === '7') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 8.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;case '8':
+                        if (tpassword === '8') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 9.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;case '9':
+                        if (tpassword === '9') {
+                            resultMessage.textContent = "Login successful. Redirecting...";
+                            window.location.href = 'user 10.html';
+                        } else {
+                            resultMessage.textContent = "Invalid T password.";
+                            generateCaptcha();
+                        }
+                        break;
+                    default:
+                        resultMessage.textContent = "Invalid T id.";
+                        generateCaptcha();
+                }
+            } else {
+                resultMessage.textContent = "Please enter correct captcha.";
+                generateCaptcha();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            generateCaptcha();
+        });
+    </script>
+</body>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>user 1</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<!-- Body section with full-screen loader, form, and content -->
+  <div class="loader-container" id="loader-container">
+    <div class="loader"></div>
+  </div>
+
+  <div class="content">
+    <form action="#" method="POST" name="google-sheet">
+      <div class="title">DATA FORM</div>
+      <div class="form">
+<div class="input_field">
+          <label for="parched gods">parched gods</label>
+          <input type="number" class="input" name="parched gods" placeholder="Enter parched gods..." required="required">
+        </div>
+
+
+        <div class="input_field">
+          <label for="date of parchesdate of sale">date of parches</label>
+          <input type="date" class="input" name="date of parches" placeholder="Enter date of parches..." required="required">
+        </div>
+
+        <div class="input_field">
+          <label for="seled gods">seled gods</label>
+          <input type="number" class="input" name="seled gods" placeholder="Enter seled gods..." required="required">
+        </div>
+
+    <div class="input_field">
+          <label for="date of sale">date of sale</label>
+          <input type="date" class="input" name="date of sale" placeholder="Enter sdate of sale..." required="required">
+        </div>
+
+
+        <div class="input_field">
+          <label for="phone number">Phone Number</label>
+          <input type="number" class="input" name="phone number" placeholder="Enter phone number..." required="required">
+        </div>
+
+
+        <div class="input_field">
+          <input type="submit" class="BTN" name="submit">
+        </div>
+        </div>
+
+       
+      </div>
+    </form>
+  </div>
+  <script>
+  // JavaScript script section for form submission
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzW_LhhAtQxHt4QNcnLqlKjYD7KA1al8wqSIsM1GTcKWmzeWVq_GGC4BpGH8n4sl1f55g/exec';
+  const form = document.forms['google-sheet'];
+  const loaderContainer = document.getElementById('loader-container');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    // Show full-screen loader
+    loaderContainer.style.display = 'flex';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then(response => {
+        // Hide full-screen loader
+        loaderContainer.style.display = 'none';
+
+        // Show alert
+        alert("Thanks for Contacting us..! We Will Contact You Soon...");
+
+        // Clear form fields
+        form.reset();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+
+        // Hide full-screen loader in case of an error
+        loaderContainer.style.display = 'none';
+      });
+  });
+</script>
+
+</body>
+</html>

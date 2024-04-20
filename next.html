@@ -1,0 +1,122 @@
+<doctype html>
+  <html lang="en">
+
+<head>
+  <!-- Head section with meta tags and styles -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Login System</title>
+</head>
+
+<body background="ahmad.png">
+  <!-- Body section with full-screen loader, form, and content -->
+  <div class="loader-container" id="loader-container">
+    <div class="loader"></div>
+  </div>
+
+  <div class="content">
+    <form action="#" method="POST" name="google-sheet">
+      <div class="title">DATA FORM</div>
+      <div class="form">
+<div class="input_field">
+          <label for="filds">filds</label>
+          <input type="number" class="input" name="filds" placeholder="how meany filds do you want in the form..." required="required">
+        </div>
+
+        <div class="input_field">
+          <p><mark><u>Note</u>:- the form acciss under 12 filds only</mark></p></div>
+
+       
+        <div class="input_field">
+          <label for="Type">Type</label>
+          <div class="ahd">
+            <select name="Type" class="Type" required="required">
+              
+              <option value="with InterneI ">with InterneI </option>
+              <option value="without out internet">without out internet</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="input_field">
+          <p><mark><u>Note</u>:- The AI is suggisting you to select Internete after your wish</mark></p></div>
+
+           <div class="input_field">
+
+  <input type="radio" name="radio" value="display page with login">
+  <label for="display page with login">display page with login</label><br>
+
+       <input type="radio" name="radio" value="display page with out login">
+         <label for="display page with out login">display page with out login</label>
+     </div>
+
+     <div class="input_field">
+          <p><mark><u>Note</u>:- The AI will sugest you to select display page with password optation. because if you select that display page with password then it will link to the surver and your data will safe but if you select without intenet optation in preves page then dont select display page with password optation after your wish</mark></p></div>
+
+
+
+        <div class="input_field">
+          <label for="color">color</label>
+          <input type="color" class="input" name="color"  required="required">
+        </div>
+
+
+      <div class="input_field">
+          <label for="date">after it date will use full</label>
+          <input type="date" class="input" name="date"  required="required">
+        </div>
+
+        <div class="input_field">
+          <label for="time">after it  will use full</label>
+          <input type="time" class="input" name="time"  required="required">
+        </div>
+   
+
+
+        
+
+        <div class="input_field">
+          <input type="submit" class="BTN" name="submit">
+        </div>
+        </div>
+
+       
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // JavaScript script section for form submission
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzC8c9FFvvMUPHVtNGr6k1hXDoIrQbP4nc_HJkzbOnE2QykKeF3rJzznanILaASMMb5Zw/exec';
+    const form = document.forms['google-sheet'];
+    const loaderContainer = document.getElementById('loader-container');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      // Show full-screen loader
+      loaderContainer.style.display = 'flex';
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          // Hide full-screen loader
+          loaderContainer.style.display = 'none';
+
+          // Show alert
+          alert("Thanks for Contacting us..! We Will Contact You Soon...");
+
+          
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+
+          // Hide full-screen loader in case of an error
+          loaderContainer.style.display = 'none';
+        });
+    });
+  </script>
+</body>
+
+</html>

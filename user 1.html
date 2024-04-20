@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>user 1</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h1>user 1</h1>
+<!-- Body section with full-screen loader, form, and content -->
+  <div class="loader-container" id="loader-container">
+    <div class="loader"></div>
+  </div>
+
+  <div class="content">
+    <form action="#" method="POST" name="google-sheet">
+      <div class="title">DATA FORM</div>
+      <div class="form">
+
+      	
+
+<div class="input_field">
+          <label for="first name">first name</label>
+          <input type="text" class="input" name="first name" placeholder="Enter first name..." required="required">
+        </div>
+
+<div class="input_field">
+          <label for="last name">Last Name</label>
+          <input type="text" class="input" name="last name" placeholder="Enter last name..." required="required">
+        </div>
+
+        <div class="input_field">
+          <label for="Email Id">Email Id</label>
+          <input type="Email" class="input" name="Email Id" placeholder="Enter Email Id..." required="required">
+        </div>
+
+        <div class="input_field">
+          <label for="phone number">Phone Number</label>
+          <input type="number" class="input" name="phone number" placeholder="Enter phone number..." required="required">
+        </div>
+
+        <div class="input_field">
+          <label for="gender">Gender</label>
+          <div class="ahd">
+            <select name="gender" class="input" required="required">
+              <option value="not selected">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input_field">
+          <label for="T id">T Id</label>
+          <input type="text" class="input" name="T id" placeholder="Create T Id..." required="required">
+        </div>
+
+        <div class="input_field">
+          <label for="password">Password</label>
+          <input type="password" class="input" name="password" placeholder="Create password..." required="required">
+        </div>
+
+        <div class="input_field">
+          <label for="confirm password">Confirm Password</label>
+          <input type="password" class="input" name="confirm password" placeholder="Enter confirm password..." required="required">
+        </div>
+
+        <div class="input_field">
+          <input type="submit" class="BTN" name="submit">
+        </div>
+        </div>
+
+       
+      </div>
+    </form>
+  </div>
+  <script>
+  // JavaScript script section for form submission
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxO50_YdY8AtNxjrSnJ5hsJg5GIzY-WfyloZVL0G-sMMsEI5k3RAXgL3r4laaBFPzgMqA/execs';
+  const form = document.forms['google-sheet'];
+  const loaderContainer = document.getElementById('loader-container');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    // Show full-screen loader
+    loaderContainer.style.display = 'flex';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then(response => {
+        // Hide full-screen loader
+        loaderContainer.style.display = 'none';
+
+        // Show alert
+        alert("Thanks for Contacting us..! We Will Contact You Soon...");
+
+        // Clear form fields
+        form.reset();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+
+        // Hide full-screen loader in case of an error
+        loaderContainer.style.display = 'none';
+      });
+  });
+</script>
+
+</body>
+</html>
+
+
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQJoQn6yNltOc8Z9t5K1TT7l9XZYtY6UrsHeCMCCZtWG3hkNbKuBBFIRnodDqH00AQtjDsCVPUqnQ0S/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>                                    

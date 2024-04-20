@@ -1,0 +1,57 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style(1).css">
+    <title>Login </title>
+</head>
+<body background="img.jpg">
+    <div class="container">
+        <h2>Login Page with Captcha</h2>
+        <form id="loginForm" onsubmit="validateForm(); return false;">
+            A code: <input id="aCode" required="required" placeholder="Enter given A code.."><br>
+            <div id="captcha"></div>
+            Captcha: <input type="text" id="captchaInput" placeholder="Enter Captcha.." required>
+            <button type="submit">Submit</button><br>
+<a href="DEM.HTML">I don't have an "A code"</a>
+            <p id="result"></p>
+        </form>
+             <script>
+        function generateCaptcha() {
+            const captchaContainer = document.getElementById('captcha');
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captchaText = '';
+
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                captchaText += characters.charAt(randomIndex);
+            }
+
+            captchaContainer.textContent = captchaText;
+        }
+
+        function validateForm() {
+            const aCode = document.getElementById('aCode').value;
+            const enteredCaptcha = document.getElementById('captchaInput').value;
+            const generatedCaptcha = document.getElementById('captcha').textContent;
+            const resultMessage = document.getElementById('result');
+
+            if (aCode === "ahmad" && enteredCaptcha === generatedCaptcha) {
+                resultMessage.textContent = "Login successful.";
+                window.location.href = 'sd.html'; // Replace with your desired URL
+            } else if (enteredCaptcha !== generatedCaptcha) {
+                resultMessage.textContent = "Please enter correct captcha.";
+                generateCaptcha(); // Regenerate captcha on failed attempts
+            } else {
+                resultMessage.textContent = "Please enter valid code.";
+                generateCaptcha(); // Change captcha after submitting wrong code
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            generateCaptcha(); // Generate initial captcha on page load
+        });
+    </script>
+</body>
+</html>
