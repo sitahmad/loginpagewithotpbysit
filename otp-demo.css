@@ -1,0 +1,219 @@
+:root {
+  color-scheme: light;
+  --bg: #f3f4fb;
+  --text: #1c1d28;
+  --card: #ffffff;
+  --accent: #7b3ff2;
+  --accent-contrast: #ffffff;
+  --border: #d7d8e8;
+  --error: #b42318;
+  --success: #027a48;
+  --muted: #5f6175;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #10111a;
+  --text: #edeef8;
+  --card: #1a1c29;
+  --accent: #b190ff;
+  --accent-contrast: #151025;
+  --border: #363956;
+  --error: #ff9c9c;
+  --success: #8ff0b5;
+  --muted: #c7cae5;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top right, #ede8ff, transparent 35%), var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.app__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.brand { font-weight: 700; margin: 0; color: var(--accent); }
+h1 { margin: 0.4rem 0; font-size: clamp(1.4rem, 3.2vw, 2rem); }
+.subtitle { margin-top: 0; color: var(--muted); }
+
+.notice,
+.card {
+  margin-top: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.notice { border-left: 5px solid var(--accent); }
+
+label, legend { font-weight: 600; }
+input, button {
+  font: inherit;
+}
+
+input:not([type="checkbox"]):not([type="radio"]) {
+  width: 100%;
+  margin-top: 0.35rem;
+  margin-bottom: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem;
+  background: transparent;
+  color: inherit;
+}
+
+input:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  outline-offset: 2px;
+}
+
+.mode-picker {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.mode-picker label,
+.remember {
+  font-weight: 500;
+}
+
+.button {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: inherit;
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+}
+
+.button--primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.button--ghost {
+  border-style: dashed;
+}
+
+.password-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.password-row input { margin-bottom: 0.9rem; }
+
+.helper {
+  margin: 0.3rem 0 0.7rem;
+  color: var(--muted);
+}
+
+.demo-panel {
+  border: 1px dashed var(--accent);
+  border-radius: 10px;
+  padding: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.otp-value {
+  font-size: 1.5rem;
+  margin: 0;
+  letter-spacing: 0.45rem;
+  font-weight: 700;
+}
+
+.otp-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(36px, 52px));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.otp-input {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 0 !important;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.feedback {
+  margin-top: 0.8rem;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.feedback--error {
+  color: var(--error);
+  border-color: color-mix(in srgb, var(--error) 35%, var(--border));
+}
+
+.feedback--success {
+  color: var(--success);
+  border-color: color-mix(in srgb, var(--success) 35%, var(--border));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.faq details + details { margin-top: 0.6rem; }
+
+@media (max-width: 640px) {
+  .app__header {
+    flex-direction: column;
+  }
+
+  .otp-grid {
+    grid-template-columns: repeat(6, minmax(36px, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
