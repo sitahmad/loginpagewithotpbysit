@@ -1,57 +1,112 @@
-<DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style(1).css">
-    <title>Login </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sit Ahmad OTP Login Demo</title>
+  <link rel="stylesheet" href="otp-demo.css">
 </head>
-<body background="img.jpg">
-    <div class="container">
-        <h2>Login Page with Captcha</h2>
-        <form id="loginForm" onsubmit="validateForm(); return false;">
-            A code: <input id="aCode" required="required" placeholder="Enter given A code.."><br>
-            <div id="captcha"></div>
-            Captcha: <input type="text" id="captchaInput" placeholder="Enter Captcha.." required>
-            <button type="submit">Submit</button><br>
-<a href="DEM.html">I don't have an "A code"</a>
-            <p id="result"></p>
-        </form>
-             <script>
-        function generateCaptcha() {
-            const captchaContainer = document.getElementById('captcha');
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let captchaText = '';
+<body>
+  <main class="app" aria-labelledby="app-title">
+    <header class="app__header">
+      <div>
+        <p class="brand">Sit Ahmad • Login Page with OTP</p>
+        <h1 id="app-title">Passwordless OTP Authentication Demo</h1>
+        <p class="subtitle">Client-only demonstration. No real SMS or email is sent.</p>
+      </div>
+      <button type="button" id="themeToggle" class="button button--ghost" aria-label="Toggle theme">🌙 Theme</button>
+    </header>
 
-            for (let i = 0; i < 6; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                captchaText += characters.charAt(randomIndex);
-            }
+    <section class="notice" aria-label="Demo mode notice">
+      <strong>Demo mode:</strong> OTPs are generated locally for testing. This is not production authentication.
+    </section>
 
-            captchaContainer.textContent = captchaText;
-        }
+    <section class="card" id="requestSection" aria-labelledby="request-title">
+      <h2 id="request-title">Step 1: Request OTP</h2>
+      <form id="requestForm" novalidate>
+        <fieldset class="mode-picker" aria-describedby="modeHelp">
+          <legend>Receive OTP via</legend>
+          <label><input type="radio" name="mode" value="email" checked> Email</label>
+          <label><input type="radio" name="mode" value="phone"> Phone</label>
+        </fieldset>
+        <p id="modeHelp" class="helper">Choose email or phone and enter a valid identifier.</p>
 
-        function validateForm() {
-            const aCode = document.getElementById('aCode').value;
-            const enteredCaptcha = document.getElementById('captchaInput').value;
-            const generatedCaptcha = document.getElementById('captcha').textContent;
-            const resultMessage = document.getElementById('result');
+        <label for="identifier" id="identifierLabel">Email address</label>
+        <input id="identifier" name="identifier" autocomplete="username" inputmode="email" placeholder="name@example.com" required>
 
-            if (aCode === "ahmad" && enteredCaptcha === generatedCaptcha) {
-                resultMessage.textContent = "Login successful.";
-                window.location.href = 'sd.html'; // Replace with your desired URL
-            } else if (enteredCaptcha !== generatedCaptcha) {
-                resultMessage.textContent = "Please enter correct captcha.";
-                generateCaptcha(); // Regenerate captcha on failed attempts
-            } else {
-                resultMessage.textContent = "Please enter valid code.";
-                generateCaptcha(); // Change captcha after submitting wrong code
-            }
-        }
+        <label for="password">Password (optional demo field)</label>
+        <div class="password-row">
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Optional">
+          <button type="button" id="togglePassword" class="button button--ghost">Show</button>
+        </div>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            generateCaptcha(); // Generate initial captcha on page load
-        });
-    </script>
+        <label class="remember">
+          <input id="rememberMe" name="rememberMe" type="checkbox"> Remember this identifier on this device
+        </label>
+
+        <button id="requestOtpBtn" type="submit" class="button button--primary">Request OTP</button>
+        <p id="requestError" class="feedback feedback--error" role="alert" hidden></p>
+      </form>
+    </section>
+
+    <section class="card" id="otpSection" aria-labelledby="otp-title" hidden>
+      <h2 id="otp-title">Step 2: Verify OTP</h2>
+      <p class="helper" id="targetInfo"></p>
+
+      <div id="demoOtpPanel" class="demo-panel" aria-live="polite" hidden>
+        <p>Your demo OTP is:</p>
+        <p id="demoOtpValue" class="otp-value" aria-label="Generated one-time password"></p>
+      </div>
+
+      <form id="verifyForm" novalidate>
+        <fieldset>
+          <legend>Enter 6-digit code</legend>
+          <div class="otp-grid" id="otpGrid">
+            <label class="sr-only" for="otp-0">Digit 1</label><input id="otp-0" class="otp-input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" autocomplete="one-time-code">
+            <label class="sr-only" for="otp-1">Digit 2</label><input id="otp-1" class="otp-input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*">
+            <label class="sr-only" for="otp-2">Digit 3</label><input id="otp-2" class="otp-input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*">
+            <label class="sr-only" for="otp-3">Digit 4</label><input id="otp-3" class="otp-input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*">
+            <label class="sr-only" for="otp-4">Digit 5</label><input id="otp-4" class="otp-input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*">
+            <label class="sr-only" for="otp-5">Digit 6</label><input id="otp-5" class="otp-input" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*">
+          </div>
+        </fieldset>
+
+        <p class="helper" id="timerText" aria-live="polite"></p>
+        <p class="helper">Attempts remaining: <span id="attemptsRemaining">3</span></p>
+
+        <div class="actions">
+          <button id="verifyBtn" type="submit" class="button button--primary">Verify OTP</button>
+          <button id="resendBtn" type="button" class="button" disabled>Resend OTP</button>
+          <button id="editBtn" type="button" class="button button--ghost">Edit email/phone</button>
+        </div>
+
+        <p id="verifyFeedback" class="feedback" role="alert" hidden></p>
+      </form>
+    </section>
+
+    <section class="card" id="successSection" aria-labelledby="success-title" hidden>
+      <h2 id="success-title">Authentication Successful</h2>
+      <p>You are now signed in to the demo session.</p>
+      <button id="logoutBtn" type="button" class="button button--primary">Logout and Reset</button>
+    </section>
+
+    <section class="card faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Help / FAQ</h2>
+      <details>
+        <summary>Why do I see the OTP on screen?</summary>
+        <p>This repository runs entirely in the browser. Showing the OTP keeps the demo testable without paid providers.</p>
+      </details>
+      <details>
+        <summary>What happens after refresh?</summary>
+        <p>Theme and remembered identifier are restored. Pending OTP sessions are restored only until they expire.</p>
+      </details>
+      <details>
+        <summary>How do I use real OTP in production?</summary>
+        <p>Move OTP generation and verification to a backend and use a verified email/SMS provider.</p>
+      </details>
+    </section>
+  </main>
+
+  <script src="otp-demo.js"></script>
 </body>
 </html>
